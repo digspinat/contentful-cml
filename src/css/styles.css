@@ -56,9 +56,9 @@
   background-color: #f2f3f5;
 }
 
-.quote.stripe.segment {
+/*.quote.stripe.segment {
   padding: 0;
-}
+}*/
 
 .quote.stripe.segment .grid .column {
   padding-top: 5em;
