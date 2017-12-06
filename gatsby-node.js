@@ -116,15 +116,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   }
                 }
               }
-              manualAlgolia {
-                id
-                partialAlgoliaMake
-                partialAlgoliaSerie
-                partialAlgoliaSubSerie
-                partialAlgoliaPlatform
-                partialAlgoliaYears
-                partialAlgoliaFuelType
-              }
               createdAt
               updatedAt
             }
@@ -142,7 +133,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           component: slash(manualTemplate),
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.manualSku,
+            slug: node.manualSku
           },
         })
       })

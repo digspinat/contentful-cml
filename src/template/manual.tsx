@@ -202,15 +202,6 @@ export default ({ data }) => {
             }
           }
         }
-        manualAlgolia {
-          id
-          partialAlgoliaMake
-          partialAlgoliaSerie
-          partialAlgoliaSubSerie
-          partialAlgoliaPlatform
-          partialAlgoliaYears
-          partialAlgoliaFuelType
-        }
         createdAt
         updatedAt
       }
