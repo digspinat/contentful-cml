@@ -5,30 +5,32 @@ import Link from "gatsby-link"
 export default ({ data }) => {
   const post = data.allContentfulManual.edges
   return (
-    <Container>
-      <Segment vertical>
-        <Header as="h2">
-          <Icon name="info circle" />
-          <Header.Content>
-            Manual
-          </Header.Content>
-        </Header>
-      </Segment>
-      <Segment vertical>
-      <div>
-        <Grid>
-          {post.map(({ node }) =>
-            <Grid.Column key={node.manualSku} mobile={16} tablet={8} computer={4}>
-              <Link to={`manual/`+node.manualSku} >
-                <Image src='https://cmlp.imgix.net/Images/covers/cml/p/103003.jpg' width='310px' height='401px' />
-                <Header as='h3' icon textAlign='center'>{node.manualTitle}</Header>
-              </Link>
-            </Grid.Column>
-          )}
-        </Grid>
-      </div>
-      </Segment>
-    </Container>
+    <div className='ui container'>
+      <Container>
+        <Segment vertical>
+          <Header as="h2">
+            <Icon name="info circle" />
+            <Header.Content>
+              Manual
+            </Header.Content>
+          </Header>
+        </Segment>
+        <Segment vertical>
+        <div>
+          <Grid>
+            {post.map(({ node }) =>
+              <Grid.Column key={node.manualSku} mobile={16} tablet={8} computer={4}>
+                <Link to={`manual/`+node.manualSku} >
+                  <Image src='https://cmlp.imgix.net/Images/covers/cml/p/103003.jpg' width='310px' height='401px' />
+                  <Header as='h3' icon textAlign='center'>{node.manualTitle}</Header>
+                </Link>
+              </Grid.Column>
+            )}
+          </Grid>
+        </div>
+        </Segment>
+      </Container>
+    </div>
     )
 }
   export const pageQuery = graphql`
