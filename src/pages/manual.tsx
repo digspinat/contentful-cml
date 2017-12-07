@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Container, Segment, Header, Icon, Grid, Divider, Image } from "semantic-ui-react";
-import Link from "gatsby-link"
+import Link from "gatsby-link";
 
 export default ({ data }) => {
-  const post = data.allContentfulManual.edges
+  const post = data.allContentfulManual.edges;
   return (
-    <div className='ui container'>
+    <div className="ui container">
       <Container>
         <Segment vertical>
           <Header as="h2">
@@ -20,19 +20,19 @@ export default ({ data }) => {
           <Grid>
             {post.map(({ node }) =>
               <Grid.Column key={node.manualSku} mobile={16} tablet={8} computer={4}>
-                <Link to={`manual/`+node.manualSku} >
-                  <Image src='https://cmlp.imgix.net/Images/covers/cml/p/103003.jpg' width='310px' height='401px' />
-                  <Header as='h3' icon textAlign='center'>{node.manualTitle}</Header>
+                <Link to={`manual/` + node.manualSku} >
+                  <Image src={node.manualImgixUrlProduct} width="310px" height="401px" />
+                  <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
                 </Link>
-              </Grid.Column>
+              </Grid.Column>,
             )}
           </Grid>
         </div>
         </Segment>
       </Container>
     </div>
-    )
-}
+    );
+};
   export const pageQuery = graphql`
     query manualsQuery{
       allContentfulManual {
@@ -44,6 +44,8 @@ export default ({ data }) => {
           manualCurrency
           manualDownloadId
           manualStatus
+          manualImgixUrlProduct
+      		manualImgixUrlCategory
           manualDescription {
             id
             p_descId

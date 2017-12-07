@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Container, Segment, Header, Icon, Grid, Divider, Image, Table, Message } from "semantic-ui-react";
-import markdownIt from 'markdown-it'
+import markdownIt from "markdown-it";
 
 export default ({ data }) => {
-  const manual = data.contentfulManual
+  const manual = data.contentfulManual;
   return (
-    <div className='ui container'>
+    <div className="ui container">
       <Container>
         <Segment vertical>
           <Header as="h2">
@@ -19,12 +19,13 @@ export default ({ data }) => {
         <div>
           <Grid>
             <Grid.Column mobile={16} tablet={8} computer={7}>
-              <Image src='https://cmlp.imgix.net/Images/covers/cml/p/103003.jpg' width='450px' height='582px' />
+              <Image src={manual.manualImgixUrlProduct} width="450px" height="582px" />
             </Grid.Column>
             <Grid.Column mobile={16} tablet={8} computer={7}>
-              <Header as='h3' style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header>
-              <div dangerouslySetInnerHTML={ { __html: manual.manualSendowl.so_string.childMarkdownRemark.html } }></div>
-              <Header as='h3' style={{ color: "#0085da" }} icon >Car Specification</Header>
+              <Header as="h3" style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header>
+              <div dangerouslySetInnerHTML={ { __html: manual.manualSendowl.so_string.childMarkdownRemark.html } }>
+              </div>
+              <Header as="h3" style={{ color: "#0085da" }} icon >Car Specification</Header>
               <Table singleLine size="large" style={{ width: "100%" }}>
                 <Table.Body>
                   <Table.Row>
@@ -57,7 +58,7 @@ export default ({ data }) => {
           </Grid>
           <Grid>
             <Grid.Column mobile={16} tablet={8} computer={7}>
-              <Header as='h3' style={{ color: "#0085da" }} icon >Manual Specification</Header>
+              <Header as="h3" style={{ color: "#0085da" }} icon >Manual Specification</Header>
               <Table singleLine size="large" style={{ width: "100%" }}>
                 <Table.Body>
                   <Table.Row>
@@ -84,25 +85,32 @@ export default ({ data }) => {
               </Table>
             </Grid.Column>
             <Grid.Column mobile={16} tablet={8} computer={7}>
-              <Header as='h3' style={{ color: "#0085da" }} icon >Manual Engine</Header>
+              <Header as="h3" style={{ color: "#0085da" }} icon >Manual Engine</Header>
               <div dangerouslySetInnerHTML={ { __html: manual.manualEngines.eng_list.childMarkdownRemark.html } }></div>
             </Grid.Column>
           </Grid>
-          <Header as='h3' style={{ color: "#0085da" }} icon >Description</Header>
-          <div dangerouslySetInnerHTML={ { __html: manual.manualDescription.p_descr_text.childMarkdownRemark.html } }></div>
-          <div dangerouslySetInnerHTML={ { __html: manual.manualToc.toc_desc.childMarkdownRemark.html } }></div><br />
+          <Header as="h3" style={{ color: "#0085da" }} icon >
+            Description
+          </Header>
+          <div dangerouslySetInnerHTML={ { __html: manual.manualDescription.p_descr_text.childMarkdownRemark.html } }>
+          </div>
+          <div dangerouslySetInnerHTML={ { __html: manual.manualToc.toc_desc.childMarkdownRemark.html } }>
+          </div><br />
           <Grid>
             <Grid.Column mobile={16} tablet={8} computer={7}>
-              <Header as='h3' style={{ color: "#0085da" }} icon >Manual Preview</Header>
-              <div dangerouslySetInnerHTML={ { __html: manual.manualPreview.pr_list.childMarkdownRemark.html } }></div><br />
+              <Header as="h3" style={{ color: "#0085da" }} icon >
+                Manual Preview
+              </Header>
+              <div dangerouslySetInnerHTML={ { __html: manual.manualPreview.pr_list.childMarkdownRemark.html } }>
+              </div><br />
             </Grid.Column>
             <Grid.Column mobile={16} tablet={8} computer={7}>
-              <Header as='h3' style={{ color: "#0085da" }} icon >Manual Review</Header>
+              <Header as="h3" style={{ color: "#0085da" }} icon >Manual Review</Header>
               {manual.manualReview.rev_list.map((review) =>
                 <Message info>
                   <Message.Header>{review.reviewListName}</Message.Header>
                   <div dangerouslySetInnerHTML={ { __html: review.rev_l_description.childMarkdownRemark.html } }></div>
-                </Message>
+                </Message>,
                 )}
             </Grid.Column>
           </Grid>
@@ -113,8 +121,8 @@ export default ({ data }) => {
         </Segment>
       </Container>
     </div>
-    )
-}
+    );
+};
 
   export const pageQuery = graphql`
     query manualQuery($slug: String!) {
@@ -124,6 +132,8 @@ export default ({ data }) => {
         manualCurrency
         manualDownloadId
         manualStatus
+        manualImgixUrlProduct
+    		manualImgixUrlCategory
         manualDescription {
           id
           p_descId
