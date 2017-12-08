@@ -9,9 +9,9 @@ import "../css/semantic.min.css";
 import "prismjs/themes/prism-okaidia.css";
 
 export const menuItems = [
-  { name: "Home", path: "/", exact: true, icon: "home", inverted: true },
+  { name: "Home", path: "/", exact: true, icon: "home", inverted: false },
   { name: "About", path: "/about/", exact: true, icon: "info circle" },
-  { name: "Manual", path: "/manual/", exact: true, icon: "info circle" }
+  { name: "Manual", path: "/manual/", exact: true, icon: "info circle" },
 ];
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {

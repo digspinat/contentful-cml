@@ -1,12 +1,22 @@
 import * as React from "react";
-import { Container, Segment, Header, Icon, Grid, Divider, Image } from "semantic-ui-react";
+import { Container, Segment, Header, Icon, Grid, Divider, Image, Menu } from "semantic-ui-react";
 import Link from "gatsby-link";
 
 export default ({ data }) => {
-  const post = data.allContentfulManual.edges;
+  const post = data.manual.edges;
+  const category = data.category.group;
   return (
     <div className="ui container">
       <Container>
+        <Segment vertical>
+          <Menu size="large" secondary>
+            {category.map(( category, index ) =>
+              <div key={index}>
+                <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
+              </div>,
+            )}
+          </Menu>
+        </Segment>
         <Segment vertical>
           <Header as="h2">
             <Icon name="info circle" />
@@ -35,7 +45,7 @@ export default ({ data }) => {
 };
   export const pageQuery = graphql`
     query manualsQuery{
-      allContentfulManual {
+      manual:allContentfulManual {
       edges {
         node {
           id
@@ -97,14 +107,6 @@ export default ({ data }) => {
               so_string
             }
           }
-          manualPreview {
-            id
-            pr_id
-            pr_list {
-              id
-              pr_list
-            }
-          }
           manualReview {
             id
             rev_id
@@ -122,6 +124,13 @@ export default ({ data }) => {
           createdAt
           updatedAt
         }
+      }
+    }
+
+    category: allContentfulManual {
+      group(field: make) {
+        fieldValue
+        totalCount
       }
     }
     }`;

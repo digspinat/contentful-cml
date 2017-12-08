@@ -1,7 +1,8 @@
 const path = require('path');
 const slash = require('slash');
 const {kebabCase, uniq, get, compact, times} = require('lodash');
-const { createFilePath } = require(`gatsby-source-filesystem`)
+
+const {createFilePath} = require(`gatsby-source-filesystem`);
 // Don't forget to update hard code values into:
 // - `templates/blog-page.tsx:23`
 // - `pages/blog.tsx:26`
@@ -29,8 +30,8 @@ exports.modifyWebpackConfig = ({config, stage}) => {
   }
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({graphql, boundActionCreators}) => {
+  const {createPage} = boundActionCreators;
   return new Promise((resolve, reject) => {
     graphql(`
       {
@@ -94,14 +95,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   so_string
                 }
               }
-              manualPreview {
-                id
-                pr_id
-                pr_list {
-                  id
-                  pr_list
-                }
-              }
               manualReview {
                 id
                 rev_id
@@ -124,23 +117,38 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     `
 ).then(result => {
-      // console.log(JSON.stringify(result, null, 4))
-      const manualTemplate = path.resolve(`./src/template/manual.tsx`)
-      result.data.allContentfulManual.edges.map(({ node }) => {
-        // console.log(node.manualSku);
-        createPage({
-          path: `/manual/${node.manualSku}`,
-          component: slash(manualTemplate),
-          context: {
+      // Console.log(JSON.stringify(result, null, 4))
+  const manual = result.data.allContentfulManual.edges.map(p => p.node);
+  const manualTemplate = path.resolve(`./src/template/manual.tsx`);
+  const manualTagsTemplate = path.resolve(`./src/template/category.tsx`);
+
+  result.data.allContentfulManual.edges.map(({node}) => {
+        // Console.log(node.manualSku);
+    createPage({
+      path: `/manual/${node.manualSku}`,
+      component: slash(manualTemplate),
+      context: {
             // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.manualSku
-          },
-        })
-      })
-      resolve()
-    })
-  })
-}
+        slug: node.manualSku
+      }
+    });
+  });
+  manual
+        .reduce((mem, post) => cleanArray(mem.concat(get(post, 'manualCarSpecs.cs_make'))), [])
+        .forEach(tag => {
+          createPage({
+            path: `/${tag}`,
+            component: slash(manualTagsTemplate),
+            context: {
+              // Data passed to context is available in page queries as GraphQL variables.
+              slug: tag
+            }
+          });
+        });
+  resolve();
+});
+  });
+};
 
 // Create slugs for files.
 // Slug will used for blog page path.
