@@ -1,7 +1,11 @@
 .hidden.menu {
   display: none;
 }
-
+.snipcart-add-item {
+  background: url('https://d33wubrfki0l68.cloudfront.net/cfb82f22787520b4cc5581f2ec2decb07d18b325/fcc3b/img/add_to_cart.jpg');
+  height: 50px;
+  width: 400px;
+}
 .masthead.segment {
   min-height: 700px;
   padding: 1em 0;

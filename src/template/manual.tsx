@@ -66,8 +66,16 @@ class ManualCompo extends React.Component {
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header>
-                  <div dangerouslySetInnerHTML={ { __html: manual.manualSendowl.so_string.childMarkdownRemark.html } }>
-                  </div>
+                  <button
+                    className="snipcart-add-item"
+                    data-item-id={manual.manualSku}
+                    data-item-name={manual.manualTitle}
+                    data-item-price={manual.manualSku}
+                    data-item-url="https://contentful-cml.netlify.com/manual/103005"
+                    data-item-description={manual.manualDescription.p_descr_text.childMarkdownRemark.html}
+                    data-item-image={manual.manualImgixUrlProduct}>
+                    &nbsp;
+                  </button>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Car Specification</Header>
                   <Table singleLine size="large" style={{ width: "100%" }}>
                     <Table.Body>
@@ -168,7 +176,16 @@ class ManualCompo extends React.Component {
             </div>
             </Segment>
             <Segment textAlign="center" vertical>
-              <div dangerouslySetInnerHTML={ { __html: manual.manualSendowl.so_string.childMarkdownRemark.html } }></div>
+            <button
+              className="snipcart-add-item"
+              data-item-id={manual.manualSku}
+              data-item-name={manual.manualTitle}
+              data-item-price={manual.manualSku}
+              data-item-url="https://contentful-cml.netlify.com/manual/103005"
+              data-item-description={manual.manualDescription.p_descr_text.childMarkdownRemark.html}
+              data-item-image={manual.manualImgixUrlProduct}>
+              &nbsp;
+            </button>
             </Segment>
         </Container>
       </div>
