@@ -14,6 +14,7 @@ class ManualCompo extends React.Component {
     };
     this.handleClose = this.handleClose.bind(this);
     this.openPhotoSwipe = this.openPhotoSwipe.bind(this);
+    this.getThumbnailContent = this.getThumbnailContent.bind(this);
   }
   handleClose(e){
     this.setState({
@@ -24,6 +25,11 @@ class ManualCompo extends React.Component {
     this.setState({
       isOpen: true,
       });
+  }
+  getThumbnailContent(){
+    return (
+      <img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68dd54ca-60cf-4ef7-898b-26d7cbe48ec7/10-dithering-opt.jpg" width={120} height={90}/>
+    );
   }
   render() {
     const manual = this.props.data;
@@ -143,7 +149,9 @@ class ManualCompo extends React.Component {
                   isOpen={this.state.isOpen}
                   items={manual.manualPreview.preview.data}
                   options={this.state.options}
+                  thumbnailContent={this.getThumbnailContent}
                   onClose={this.handleClose}
+                  className="pswp-gallery"
                   /><br />
                   <Button primary onClick={this.openPhotoSwipe} >See Preview</Button>
                 </Grid.Column>
