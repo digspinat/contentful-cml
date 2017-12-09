@@ -48,7 +48,7 @@ module.exports = (props: HtmlProps) => {
         {css}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" />
-
+        <link rel="stylesheet" href="https://unpkg.com/react-instantsearch-theme-algolia@4.0.0/style.min.css" />
         <link id="snipcart-theme" type="text/css" href="https://cdn.snipcart.com/themes/base/snipcart.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script type="text/javascript" id="snipcart" data-api-key="MDg1OTY3NGEtZmQyYy00OGVjLWI2ZGItMTM3NjZhMDMzNmU1NjM2NDgzMjg2MDg0MzY3MjY2" src="https://cdn.snipcart.com/scripts/snipcart.js"></script>
