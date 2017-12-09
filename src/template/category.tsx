@@ -58,7 +58,7 @@ export default ({ data }) => {
                   limitMin={10}
                   operator="or"
                   showMore={false}
-
+                  defaultRefinement={[data.category.make]}
                   withSearchBox={false}
                 />
                 <br />
