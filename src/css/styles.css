@@ -1,16 +1,19 @@
 .hit {
   width: 32.2%;
+  height: 500px;
   float: left;
-  margin: .5%;
-  position: relative;
   padding: 8px;
+  display: inline-block;
+  position:relative;
 }
 .product-name{
   padding: 5px;
+  clear: both;
 }
 @media only screen and (max-width: 500px) {
   .hit {
     width: 100%;
+    height: auto;
   }
 }
 .my-partial-addtocart li {
