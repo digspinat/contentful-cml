@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Container, Segment, Header, Icon, Grid, Divider, Image, Menu, Input, List } from "semantic-ui-react";
 import Link from "gatsby-link";
-import {InstantSearch, SearchBox, Hits, RefinementList} from 'react-instantsearch/dom';
+import {InstantSearch, SearchBox, Hits, RefinementList, Pagination} from 'react-instantsearch/dom';
 
 function Searchcomp({hit, index}) {
   return (
@@ -61,9 +61,16 @@ export default ({ data }) => {
                   defaultRefinement={[data.category.make]}
                   withSearchBox={false}
                 />
-                <br />
                 <Hits hitComponent={Searchcomp} />
                 <br />
+                <Pagination
+                   maxPages={3}
+                   pagesPadding={2}
+                   showFirst
+                   showLast
+                   showNext
+                   showPrevious
+                 />
               </InstantSearch>
             </Grid>
           </div>

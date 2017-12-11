@@ -52,6 +52,7 @@ module.exports = (props: HtmlProps) => {
         <link id="snipcart-theme" type="text/css" href="https://cdn.snipcart.com/themes/base/snipcart.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script type="text/javascript" id="snipcart" data-api-key="MDg1OTY3NGEtZmQyYy00OGVjLWI2ZGItMTM3NjZhMDMzNmU1NjM2NDgzMjg2MDg0MzY3MjY2" src="https://cdn.snipcart.com/scripts/snipcart.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous" />
       </head>
       <body>
         <div

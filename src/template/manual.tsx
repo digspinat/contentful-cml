@@ -65,7 +65,7 @@ class ManualCompo extends React.Component {
                   <Image src={manual.manualImgixUrlProduct} width="450px" height="582px" />
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
-                  <Header as="h3" style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header>
+                  <Header as="h3" style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header><br />
                   <button
                     className="snipcart-add-item"
                     data-item-id={manual.manualSku}
@@ -76,6 +76,7 @@ class ManualCompo extends React.Component {
                     data-item-image={manual.manualImgixUrlProduct}>
                     &nbsp;
                   </button>
+                  <div style={{ marginLeft: "-30px" }} className="my-partial-addtocart" dangerouslySetInnerHTML={ { __html: manual.manualAddToCart.atc_list.childMarkdownRemark.html } }></div>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Car Specification</Header>
                   <Table singleLine size="large" style={{ width: "100%" }}>
                     <Table.Body>
@@ -143,7 +144,7 @@ class ManualCompo extends React.Component {
               <Header as="h3" style={{ color: "#0085da" }} icon >
                 Description
               </Header>
-              <div dangerouslySetInnerHTML={ { __html: manual.manualDescription.p_descr_text.childMarkdownRemark.html } }>
+              <div className="my-partial-addtocart" dangerouslySetInnerHTML={ { __html: manual.manualDescription.p_descr_text.childMarkdownRemark.html } }>
               </div>
               <div dangerouslySetInnerHTML={ { __html: manual.manualToc.toc_desc.childMarkdownRemark.html } }>
               </div><br />
@@ -434,6 +435,13 @@ export default ({ data }) => {
               w
               src
               title
+            }
+          }
+        }
+        manualAddToCart {
+          atc_list {
+            childMarkdownRemark {
+              html
             }
           }
         }
