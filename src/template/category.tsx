@@ -8,12 +8,12 @@ function Searchcomp({hit, index}) {
     <article className="hit">
       <div className="product-picture-wrapper">
         <div className="product-picture">
-          <Image src={hit.manualImgixUrlProduct}  width="310px" height="401px"/>
+          <Link to={`/manual/`+hit.manualSku}><Image src={hit.manualImgixUrlProduct}  width="310px" height="401px"/></Link>
         </div>
       </div>
       <div className="product-desc-wrapper">
         <div className="product-name">
-          <Header as="h3">{hit.manualTitle}</Header>
+          <Link to={`/manual/`+hit.manualSku}><Header as="h3">{hit.manualTitle}</Header></Link>
         </div>
       </div>
     </article>
