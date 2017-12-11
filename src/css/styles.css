@@ -1,3 +1,18 @@
+.hit {
+  width: 32.2%;
+  float: left;
+  margin: .5%;
+  position: relative;
+  padding: 8px;
+}
+.product-name{
+  padding: 5px;
+}
+@media only screen and (max-width: 500px) {
+  .hit {
+    width: 100%;
+  }
+}
 .my-partial-addtocart li {
   list-style: none;
   margin: 0.1em;
