@@ -171,7 +171,6 @@ class ManualCompo extends React.Component {
                   items={manual.manualPreview.preview.data}
                   thumbnailContent={this.getThumbnailContent}
                   /><br />
-                  <Button primary onClick={this.openPhotoSwipe} >See Preview</Button>
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Manual Review</Header> <br />
