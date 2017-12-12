@@ -1,3 +1,20 @@
+.has-engine h3 {
+  padding-top: 13px;
+}
+.has-engine table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.has-engine td, .has-engine th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.has-engine tr:nth-child(even){background-color: #f2f2f2;}
+.has-engine th {
+    text-align: left;
+    background-color: rgb(0, 133, 218);
+    color: white;
+}
 .hit {
   width: 42%;
   height: 500px;

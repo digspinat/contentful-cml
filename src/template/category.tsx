@@ -90,13 +90,6 @@ export default ({ data }) => {
                 </Grid.Column>
               </Grid>
             </InstantSearch>
-
-            <Grid>
-              <InstantSearch appId="YZO8M6AZ6J" apiKey="74516bbcef74ec917e2acbcd0df2df0f" indexName="contentful-cml">
-
-                <br />
-              </InstantSearch>
-            </Grid>
           </div>
         </Segment>
       </Container>

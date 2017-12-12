@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container, Segment, Header, Icon, Grid, Divider, Image, Table, Message, Button } from "semantic-ui-react";
+import { Container, Segment, Header, Icon, Grid, Divider, Image, Table, Message, Button, Rating } from "semantic-ui-react";
 import markdownIt from "markdown-it";
 import { PhotoSwipe } from "react-photoswipe";
 
@@ -64,8 +64,8 @@ class ManualCompo extends React.Component {
                 <Grid.Column mobile={16} tablet={8} computer={7}>
                   <Image src={manual.manualImgixUrlProduct} width="450px" height="582px" />
                 </Grid.Column>
-                <Grid.Column mobile={16} tablet={8} computer={7}>
-                  <Header as="h3" style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header><br />
+                <Grid.Column mobile={16} tablet={8} computer={8}>
+                  <Header as="h3" style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header><br /><br />
                   <button
                     className="snipcart-add-item"
                     data-item-id={manual.manualSku}
@@ -75,7 +75,7 @@ class ManualCompo extends React.Component {
                     data-item-description={manual.manualDescription.p_descr_text.childMarkdownRemark.html}
                     data-item-image={manual.manualImgixUrlProduct}>
                     &nbsp;
-                  </button>
+                  </button><br /><br />
                   <div style={{ marginLeft: "-30px" }} className="my-partial-addtocart" dangerouslySetInnerHTML={ { __html: manual.manualAddToCart.atc_list.childMarkdownRemark.html } }></div>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Car Specification</Header>
                   <Table singleLine size="large" style={{ width: "100%" }}>
@@ -136,9 +136,9 @@ class ManualCompo extends React.Component {
                     </Table.Body>
                   </Table>
                 </Grid.Column>
-                <Grid.Column mobile={16} tablet={8} computer={7}>
+                <Grid.Column mobile={16} tablet={8} computer={8}>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Manual Engine</Header>
-                  <div dangerouslySetInnerHTML={ { __html: manual.manualEngines.eng_list.childMarkdownRemark.html } }></div>
+                  <div className="has-engine" dangerouslySetInnerHTML={ { __html: manual.manualEngines.eng_list.childMarkdownRemark.html } }></div>
                 </Grid.Column>
               </Grid>
               <Header as="h3" style={{ color: "#0085da" }} icon >
@@ -146,7 +146,7 @@ class ManualCompo extends React.Component {
               </Header>
               <div className="my-partial-addtocart" dangerouslySetInnerHTML={ { __html: manual.manualDescription.p_descr_text.childMarkdownRemark.html } }>
               </div>
-              <div dangerouslySetInnerHTML={ { __html: manual.manualToc.toc_desc.childMarkdownRemark.html } }>
+              <div className="has-engine" dangerouslySetInnerHTML={ { __html: manual.manualToc.toc_desc.childMarkdownRemark.html } }>
               </div><br />
               <Grid>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
@@ -165,7 +165,8 @@ class ManualCompo extends React.Component {
                   <Button primary onClick={this.openPhotoSwipe} >See Preview</Button>
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
-                  <Header as="h3" style={{ color: "#0085da" }} icon >Manual Review</Header>
+                  <Header as="h3" style={{ color: "#0085da" }} icon >Manual Review</Header> <br />
+                  <Header as="h5" style={{ color: "#0085da", margin: "0" }} icon >Rating:</Header> <Rating maxRating={5} defaultRating={manual.manualReview.rev_rating_overall} disabled icon='star' size='small' />
                   {manual.manualReview.rev_list.map((review) =>
                     <Message info key={review.id}>
                       <Message.Header>{review.reviewListName}</Message.Header>

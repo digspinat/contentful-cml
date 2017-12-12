@@ -29,7 +29,7 @@ export default ({ data }) => {
         <div>
           <Grid>
             {post.map(({ node }) =>
-              <Grid.Column key={node.manualSku} mobile={16} tablet={8} computer={4}>
+              <Grid.Column key={node.manualSku} mobile={16} tablet={8} computer={5}>
                 <Link to={`manual/` + node.manualSku} >
                   <Image src={node.manualImgixUrlProduct} width="310px" height="401px" />
                   <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
