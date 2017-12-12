@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Container, Segment, Header, Icon, Grid, Divider, Image, Table, Message, Button, Rating } from "semantic-ui-react";
+import { Container, Segment, Header, Icon, Grid, Divider, Image, Table, Message, Button, Rating, Menu } from "semantic-ui-react";
 import markdownIt from "markdown-it";
-import { PhotoSwipe } from "react-photoswipe";
+import { PhotoSwipeGallery } from "react-photoswipe";
+import Link from "gatsby-link";
 
 class ManualCompo extends React.Component {
   constructor(){
@@ -10,6 +11,7 @@ class ManualCompo extends React.Component {
       isOpen: false,
       options: {
         closeOnScroll: false,
+        fullsc: false
       },
     };
     this.handleClose = this.handleClose.bind(this);
@@ -26,13 +28,14 @@ class ManualCompo extends React.Component {
       isOpen: true,
       });
   }
-  getThumbnailContent(){
+  getThumbnailContent(item){
     return (
-      <img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68dd54ca-60cf-4ef7-898b-26d7cbe48ec7/10-dithering-opt.jpg" width={120} height={90}/>
+      <img src={item.src} width={120} height={90}/>
     );
   }
   render() {
     const manual = this.props.data;
+    const allcategory = this.props.category;
     const photoitems = [
         {
           src: "http://lorempixel.com/1200/900/sports/1",
@@ -51,6 +54,15 @@ class ManualCompo extends React.Component {
       <div className="ui container">
         <Container>
           <Segment vertical>
+            <Menu size="large" secondary>
+              {allcategory.map(( category, index ) =>
+                <div key={index}>
+                  <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
+                </div>
+              )}
+            </Menu>
+          </Segment>
+          <Segment vertical>
             <Header as="h2">
               <Icon name="info circle" />
               <Header.Content>
@@ -65,7 +77,6 @@ class ManualCompo extends React.Component {
                   <Image src={manual.manualImgixUrlProduct} width="450px" height="582px" />
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={8}>
-                  <Header as="h3" style={{ color: "#0085da" }} icon >Currency: {manual.manualCurrency}</Header><br /><br />
                   <button
                     className="snipcart-add-item"
                     data-item-id={manual.manualSku}
@@ -76,36 +87,8 @@ class ManualCompo extends React.Component {
                     data-item-image={manual.manualImgixUrlProduct}>
                     &nbsp;
                   </button><br /><br />
-                  <div style={{ marginLeft: "-30px" }} className="my-partial-addtocart" dangerouslySetInnerHTML={ { __html: manual.manualAddToCart.atc_list.childMarkdownRemark.html } }></div>
-                  <Header as="h3" style={{ color: "#0085da" }} icon >Car Specification</Header>
-                  <Table singleLine size="large" style={{ width: "100%" }}>
-                    <Table.Body>
-                      <Table.Row>
-                        <Table.Cell>Make</Table.Cell>
-                        <Table.Cell>{manual.manualCarSpecs.cs_make}</Table.Cell>
-                      </Table.Row>
-                      <Table.Row>
-                        <Table.Cell>Series</Table.Cell>
-                        <Table.Cell>{manual.manualCarSpecs.cs_serie}</Table.Cell>
-                      </Table.Row>
-                      <Table.Row>
-                        <Table.Cell>Sub-series</Table.Cell>
-                        <Table.Cell>{manual.manualCarSpecs.cs_sub_serie}</Table.Cell>
-                      </Table.Row>
-                      <Table.Row>
-                        <Table.Cell>Platform</Table.Cell>
-                        <Table.Cell>{manual.manualCarSpecs.cs_platform}</Table.Cell>
-                      </Table.Row>
-                      <Table.Row>
-                        <Table.Cell>Bodytype</Table.Cell>
-                        <Table.Cell>{manual.manualCarSpecs.cs_body_type}</Table.Cell>
-                      </Table.Row>
-                      <Table.Row>
-                        <Table.Cell>Fueltype</Table.Cell>
-                        <Table.Cell>{manual.manualCarSpecs.cs_fuel_type}</Table.Cell>
-                      </Table.Row>
-                    </Table.Body>
-                  </Table>
+                  <div style={{ marginLeft: "-21px" }} className="my-partial-addtocart" dangerouslySetInnerHTML={ { __html: manual.manualAddToCart.atc_list.childMarkdownRemark.html } }></div>
+
                 </Grid.Column>
               </Grid>
               <Grid>
@@ -137,10 +120,41 @@ class ManualCompo extends React.Component {
                   </Table>
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={8}>
-                  <Header as="h3" style={{ color: "#0085da" }} icon >Manual Engine</Header>
-                  <div className="has-engine" dangerouslySetInnerHTML={ { __html: manual.manualEngines.eng_list.childMarkdownRemark.html } }></div>
+                <Header as="h3" style={{ color: "#0085da" }} icon >Car Specification</Header>
+                  <Table singleLine size="large" style={{ width: "100%" }}>
+                    <Table.Body>
+                      <Table.Row>
+                        <Table.Cell>Make</Table.Cell>
+                        <Table.Cell>{manual.manualCarSpecs.cs_make}</Table.Cell>
+                      </Table.Row>
+                      <Table.Row>
+                        <Table.Cell>Series</Table.Cell>
+                        <Table.Cell>{manual.manualCarSpecs.cs_serie}</Table.Cell>
+                      </Table.Row>
+                      <Table.Row>
+                        <Table.Cell>Sub-series</Table.Cell>
+                        <Table.Cell>{manual.manualCarSpecs.cs_sub_serie}</Table.Cell>
+                      </Table.Row>
+                      <Table.Row>
+                        <Table.Cell>Platform</Table.Cell>
+                        <Table.Cell>{manual.manualCarSpecs.cs_platform}</Table.Cell>
+                      </Table.Row>
+                      <Table.Row>
+                        <Table.Cell>Bodytype</Table.Cell>
+                        <Table.Cell>{manual.manualCarSpecs.cs_body_type}</Table.Cell>
+                      </Table.Row>
+                      <Table.Row>
+                        <Table.Cell>Fueltype</Table.Cell>
+                        <Table.Cell>{manual.manualCarSpecs.cs_fuel_type}</Table.Cell>
+                      </Table.Row>
+                    </Table.Body>
+                  </Table>
                 </Grid.Column>
               </Grid>
+
+              <Header as="h3" style={{ color: "#0085da" }} icon >Manual Engine</Header>
+              <div className="has-engine" dangerouslySetInnerHTML={ { __html: manual.manualEngines.eng_list.childMarkdownRemark.html } }></div>
+
               <Header as="h3" style={{ color: "#0085da" }} icon >
                 Description
               </Header>
@@ -153,14 +167,9 @@ class ManualCompo extends React.Component {
                   <Header as="h3" style={{ color: "#0085da" }} icon >
                     Manual Preview
                   </Header>
-                  <PhotoSwipe
-                  id="my-photoswipe"
-                  isOpen={this.state.isOpen}
+                  <PhotoSwipeGallery
                   items={manual.manualPreview.preview.data}
-                  options={this.state.options}
                   thumbnailContent={this.getThumbnailContent}
-                  onClose={this.handleClose}
-                  className="pswp-gallery"
                   /><br />
                   <Button primary onClick={this.openPhotoSwipe} >See Preview</Button>
                 </Grid.Column>
@@ -196,13 +205,15 @@ class ManualCompo extends React.Component {
 }
 
 export default ({ data }) => {
-  const manual = data.contentfulManual;
+  const manual = data.manual;
+  const category = data.mycategory.group;
   return (
     <div>
-      <ManualCompo name="milan" data={manual} />
+      <ManualCompo name="milan" data={manual} category={category}/>
     </div>
   );
 };
+
 
 /*export default ({ data }) => {
   const manual = data.contentfulManual;
@@ -348,7 +359,7 @@ export default ({ data }) => {
 
   export const pageQuery = graphql`
     query manualQuery($slug: String!) {
-      contentfulManual(manualSku: { eq: $slug }) {
+      manual: contentfulManual(manualSku: { eq: $slug }) {
         manualTitle
         manualSku
         manualCurrency
@@ -448,5 +459,11 @@ export default ({ data }) => {
         }
         createdAt
         updatedAt
+      }
+      mycategory: allContentfulManual {
+        group(field: make) {
+          fieldValue
+          totalCount
+        }
       }
     }`;
