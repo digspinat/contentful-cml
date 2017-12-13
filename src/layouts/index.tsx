@@ -5,8 +5,8 @@ import SidebarMenu from "../components/SidebarMenu/SidebarMenu";
 import { Segment, Icon, Container, Sidebar, Button } from "semantic-ui-react";
 import "../css/styles.css";
 import "../css/responsive.css";
-import "../css/semantic.min.css";
-import "prismjs/themes/prism-okaidia.css";
+/*import "../css/semantic.min.css";
+import "prismjs/themes/prism-okaidia.css";*/
 
 export const menuItems = [
   { name: "Home", path: "/", exact: true, icon: "home", inverted: false },
