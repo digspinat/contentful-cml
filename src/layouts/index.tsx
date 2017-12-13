@@ -35,7 +35,7 @@ export default class DefaultLayout extends React.PureComponent<DefaultLayoutProp
           />}
 
           {/* Render children pages */}
-          <div style={{ paddingBottom: 60 }}>
+          <div style={{ paddingBottom: 160 }}>
             {this.props.children()}
           </div>
           <Segment inverted style={{ position: "absolute", bottom: 0, width: "100%", marginTop: "10px" }}>
