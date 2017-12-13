@@ -8,7 +8,9 @@
     max-width: 100%;
   }
 }
-
+.ui.vertical.segment {
+  border-bottom: 0px solid rgba(34, 36, 38, .15);
+}
 .has-engine h3 {
   padding-top: 13px;
 }

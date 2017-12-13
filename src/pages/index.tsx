@@ -9,6 +9,8 @@ import {
   Grid,
   Header,
   Icon,
+  Menu,
+  Image
 } from "semantic-ui-react";
 
 interface IndexPageProps {
@@ -17,94 +19,139 @@ interface IndexPageProps {
   };
 }
 
-export default (props: IndexPageProps) =>
-  <div>
-    {/* Master head */}
-    <Segment vertical inverted textAlign="center" className="masthead">
-      <HeaderMenu
-        Link={Link} pathname={props.location.pathname} items={menuItems} inverted
-      />
-      <Container text>
-        <Header inverted as="h1">Gatsby 1.0 - Starter kit</Header>
-        <Header inverted as="h2">Typescript - Jest - Semantic UI</Header>
-        <Button primary size="huge">Get started!</Button>
+export default (props: IndexPageProps, data) => {
+  /*console.log(props.data)*/
+  const post = props.data.manual.edges;
+  const category = props.data.category.group;
+  return (
+    <div className="ui container">
+      <Container>
+        <Segment vertical >
+          <HeaderMenu Link={Link} pathname={props.location.pathname} items={menuItems} />
+          <Menu size="large" secondary>
+            {category.map(( category, index ) =>
+              <div key={index}>
+                <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
+              </div>,
+            )}
+          </Menu>
+        </Segment>
+        <Segment vertical>
+          <Header as="h2">
+            <Icon name="info circle" />
+            <Header.Content>
+              Manual
+            </Header.Content>
+          </Header>
+        </Segment>
+        <Segment vertical>
+        <div>
+          <Grid>
+          {post.map(({ node }) =>
+            <Grid.Column key={node.manualSku} mobile={16} tablet={8} computer={5}>
+              <Link to={`manual/` + node.manualUrl} >
+                <Image src={node.manualImgixUrlProduct} width="310px" height="401px" />
+                <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
+              </Link>
+            </Grid.Column>
+          )}
+          </Grid>
+        </div>
+        </Segment>
       </Container>
-    </Segment>
+    </div>
+  );
+}
 
-    {/* About this starter */}
-    <Segment vertical className="stripe">
-      <Grid stackable verticalAlign="middle" className="container">
-        <Grid.Row>
-          <Grid.Column width="8">
-            <Header>Lorem ipsum</Header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Porro laudantium ad, quae, perspiciatis ipsa distinctio.
-                </p>
-            <Header>Dolor sit amet</Header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Porro laudantium ad, quae, perspiciatis ipsa distinctio.
-                </p>
-          </Grid.Column>
-          <Grid.Column width="6" floated="right">
-            {/* TODO replace with a pretty GIF */}
-            <Header>Lorem ipsum</Header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Porro laudantium ad, quae, perspiciatis ipsa distinctio.
-                </p>
-            <Header>Dolor sit amet</Header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Porro laudantium ad, quae, perspiciatis ipsa distinctio.
-                </p>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
+  export const pageQuery = graphql`
+    query homemanualsQuery{
+      manual:allContentfulManual {
+      edges {
+        node {
+          id
+          manualTitle
+          manualSku
+          manualUrl
+          manualCurrency
+          manualDownloadId
+          manualStatus
+          manualImgixUrlProduct
+          manualImgixUrlCategory
+          manualDescription {
+            id
+            p_descId
+            p_descr_text {
+              id
+              p_descr_text
+            }
+          }
+          manualEngines {
+            id
+            eng_id
+            eng_list {
+              id
+              eng_list
+            }
+          }
+          manualToc {
+            id
+            toc_id
+            toc_desc {
+              id
+              toc_desc
+            }
+          }
+          manualCarSpecs {
+            id
+            cs_id
+            cs_make
+            cs_serie
+            cs_sub_serie
+            cs_platform
+            cs_body_type
+            cs_fuel_type
+          }
+          manualManSpecs {
+            id
+            ms_id
+            ms_type
+            ms_pages
+            ms_filesize
+            ms_format
+            ms_anguage
+          }
+          manualSendowl {
+            id
+            so_id
+            so_string {
+              id
+              so_string
+            }
+          }
+          manualReview {
+            id
+            rev_id
+            rev_rating_overall
+            rev_list {
+              id
+              reviewListId
+              reviewListName
+              rev_l_description {
+                id
+                rev_l_description
+              }
+            }
+          }
+          createdAt
+          updatedAt
+        }
+      }
+    }
 
-    {/* Key features */}
-    <Segment vertical className="stripe alternate feature">
-      <Grid columns="3" textAlign="center" divided relaxed stackable className="container">
-        <Grid.Row>
-          <Grid.Column>
-            <Header icon>
-              <Icon name="wizard"></Icon>
-              A kind of magic!
-            </Header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptas eaque at quae cupiditate aspernatur quibusdam!
-                  Distinctio quod non, harum dolorum earum molestias,
-                  beatae expedita aliquam dolorem asperiores nemo amet quaerat.
-                </p>
-          </Grid.Column>
-          <Grid.Column>
-            <Header icon>
-              <Icon name="wizard"></Icon>
-              A kind of magic!
-            </Header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptas eaque at quae cupiditate aspernatur quibusdam!
-                  Distinctio quod non, harum dolorum earum molestias,
-                  beatae expedita aliquam dolorem asperiores nemo amet quaerat.
-                </p>
-          </Grid.Column>
-          <Grid.Column>
-            <Header icon>
-              <Icon name="wizard"></Icon>
-              A kind of magic!
-            </Header>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Voluptas eaque at quae cupiditate aspernatur quibusdam!
-                  Distinctio quod non, harum dolorum earum molestias,
-                  beatae expedita aliquam dolorem asperiores nemo amet quaerat.
-                </p>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-  </div>;
+    category: allContentfulManual {
+      group(field: make) {
+        fieldValue
+        totalCount
+      }
+    }
+    }`;

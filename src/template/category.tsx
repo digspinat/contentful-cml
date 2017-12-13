@@ -22,7 +22,7 @@ function Searchcomp({hit, index}) {
 
 export default ({ data }) => {
   const Category = data.categoryitem.edges;
-  console.log(Category);
+  /*console.log(Category);*/
   const allcategory = data.allcategory.group;
   return (
     <div className="ui container">
