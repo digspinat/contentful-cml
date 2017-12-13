@@ -22,7 +22,7 @@ function Searchcomp({hit, index}) {
 
 export default ({ data }) => {
   const Category = data.categoryitem.edges;
-  /*console.log(data);*/
+  console.log(Category);
   const allcategory = data.allcategory.group;
   return (
     <div className="ui container">
@@ -54,43 +54,16 @@ export default ({ data }) => {
           </Grid>
         </Segment>
         <Segment vertical>
-          <div>
-            <InstantSearch appId="YZO8M6AZ6J" apiKey="74516bbcef74ec917e2acbcd0df2df0f" indexName="contentful-cml">
-              <Grid>
-                <Grid.Column mobile={16} tablet={8} computer={4}>
-                  <Panel title="Brand">
-                    <RefinementList attributeName="partialAlgoliaMake" limitMax={20} limitMin={10} operator="or" showMore={false} defaultRefinement={[data.category.make]} withSearchBox={false} />
-                  </Panel><br />
-                  <Panel title="Series">
-                    <RefinementList attributeName="partialAlgoliaSerie" limitMax={20} limitMin={10} operator="or" showMore={false} withSearchBox={false} />
-                  </Panel><br />
-                  <Panel title="Sub Series">
-                    <RefinementList attributeName="partialAlgoliaSubSerie" limitMax={20} limitMin={10} operator="or" showMore={false} withSearchBox={false} />
-                  </Panel><br />
-                  <Panel title="Platform">
-                    <RefinementList attributeName="partialAlgoliaPlatform" limitMax={20} limitMin={10} operator="or" showMore={false} withSearchBox={false} />
-                  </Panel><br />
-                  <Panel title="Years">
-                    <RefinementList attributeName="partialAlgoliaYears" limitMax={20} limitMin={10} operator="or" showMore={false} withSearchBox={false} />
-                  </Panel><br />
-                  <Panel title="Fuel Type">
-                    <RefinementList attributeName="partialAlgoliaFuelType" limitMax={20} limitMin={10} operator="or" showMore={false} withSearchBox={false} />
-                  </Panel>
-                </Grid.Column>
-                <Grid.Column mobile={16} tablet={8} computer={12}>
-                  <SearchBox />
-                  <br /><br />
-                  <Hits hitComponent={Searchcomp} /><br />
-                </Grid.Column>
-              </Grid>
-              <Grid>
-                <Grid.Column mobile={16} tablet={8} computer={4}></Grid.Column>
-                <Grid.Column textAlign="center" mobile={16} tablet={8} computer={12}>
-                  <Pagination maxPages={3} pagesPadding={2} showFirst showLast showNext showPrevious />
-                </Grid.Column>
-              </Grid>
-            </InstantSearch>
-          </div>
+          <Grid>
+            {Category.map(({ node }) =>
+              <Grid.Column key={node.manualUrl} mobile={16} tablet={8} computer={5}>
+                <Link to={`manual/` + node.manualUrl} >
+                  <Image src={node.manualImgixUrlCategory} width="310px" height="401px" />
+                  <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
+                </Link>
+              </Grid.Column>,
+            )}
+          </Grid>
         </Segment>
       </Container>
     </div>
@@ -106,10 +79,12 @@ export const pageQuery = graphql`
         make
         manualTitle
         manualSku
+        manualUrl
         manualImgixUrlCategory
       }
     }
   }
+
   category: contentfulManual( make: {eq: $slug}) {
     make
   }
