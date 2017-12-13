@@ -164,13 +164,7 @@ class ManualCompo extends React.Component {
               </div><br />
               <Grid>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
-                  <Header as="h3" style={{ color: "#0085da" }} icon >
-                    Manual Preview
-                  </Header>
-                  <PhotoSwipeGallery
-                  items={manual.manualPreview.preview.data}
-                  thumbnailContent={this.getThumbnailContent}
-                  /><br />
+                  
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Manual Review</Header> <br />
@@ -358,9 +352,10 @@ export default ({ data }) => {
 
   export const pageQuery = graphql`
     query manualQuery($slug: String!) {
-      manual: contentfulManual(manualSku: { eq: $slug }) {
+      manual: contentfulManual(manualUrl: { eq: $slug }) {
         manualTitle
         manualSku
+        manualUrl
         manualCurrency
         manualDownloadId
         manualStatus

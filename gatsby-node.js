@@ -44,6 +44,7 @@ exports.createPages = ({graphql, boundActionCreators}) => {
               manualCurrency
               manualDownloadId
               manualStatus
+              manualUrl
               manualDescription {
                 id
                 p_descId
@@ -123,13 +124,13 @@ exports.createPages = ({graphql, boundActionCreators}) => {
   const manualTagsTemplate = path.resolve(`./src/template/category.tsx`);
 
   result.data.allContentfulManual.edges.map(({node}) => {
-        // Console.log(node.manualSku);
+        console.log(node.manualUrl);
     createPage({
-      path: `/manual/${node.manualSku}`,
+      path: `/manual/${node.manualUrl}`,
       component: slash(manualTemplate),
       context: {
             // Data passed to context is available in page queries as GraphQL variables.
-        slug: node.manualSku
+        slug: node.manualUrl
       }
     });
   });
