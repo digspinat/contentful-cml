@@ -55,6 +55,7 @@ class ManualCompo extends React.Component {
         <Container>
           <Segment vertical>
             <Menu size="large" secondary>
+              <Menu.Item as={Link} name="Home" to='/'  />
               {allcategory.map(( category, index ) =>
                 <div key={index}>
                   <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
@@ -174,7 +175,7 @@ class ManualCompo extends React.Component {
                     )}
                 </Grid.Column>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
-                  
+
                 </Grid.Column>
               </Grid>
             </div>
