@@ -27,12 +27,12 @@ export default (props: IndexPageProps, data) => {
     <div className="ui container">
       <Container>
         <Segment vertical >
-          <HeaderMenu Link={Link} pathname={props.location.pathname} items={menuItems} />
           <Menu size="large" secondary>
+            <Menu.Item as={Link} name="Home" to='/'  />
             {category.map(( category, index ) =>
               <div key={index}>
                 <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
-              </div>,
+              </div>
             )}
           </Menu>
         </Segment>

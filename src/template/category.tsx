@@ -29,6 +29,7 @@ export default ({ data }) => {
       <Container>
         <Segment vertical>
           <Menu size="large" secondary>
+            <Menu.Item as={Link} name="Home" to='/'  />
             {allcategory.map(( category, index ) =>
               <div key={index}>
                 <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
@@ -61,7 +62,7 @@ export default ({ data }) => {
                   <Image src={node.manualImgixUrlCategory} width="310px" height="401px" />
                   <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
                 </Link>
-              </Grid.Column>,
+              </Grid.Column>
             )}
           </Grid>
         </Segment>

@@ -164,17 +164,17 @@ class ManualCompo extends React.Component {
               </div><br />
               <Grid>
                 <Grid.Column mobile={16} tablet={8} computer={7}>
-
-                </Grid.Column>
-                <Grid.Column mobile={16} tablet={8} computer={7}>
                   <Header as="h3" style={{ color: "#0085da" }} icon >Manual Review</Header> <br />
                   <Header as="h5" style={{ color: "#0085da", margin: "0" }} icon >Rating:</Header> <Rating maxRating={5} defaultRating={manual.manualReview.rev_rating_overall} disabled icon='star' size='small' />
                   {manual.manualReview.rev_list.map((review) =>
                     <Message info key={review.id}>
-                      <Message.Header>{review.reviewListName}</Message.Header>
-                      <div dangerouslySetInnerHTML={ { __html: review.rev_l_description.childMarkdownRemark.html } }></div>
+                    <Message.Header>{review.reviewListName}</Message.Header>
+                    <div dangerouslySetInnerHTML={ { __html: review.rev_l_description.childMarkdownRemark.html } }></div>
                     </Message>,
                     )}
+                </Grid.Column>
+                <Grid.Column mobile={16} tablet={8} computer={7}>
+                  
                 </Grid.Column>
               </Grid>
             </div>
