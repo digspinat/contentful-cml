@@ -11,10 +11,10 @@ interface HeaderMenuProps extends MenuProps {
 }
 
 export const HeaderMenu = ({ items, pathname, Link, inverted, dispatch }: HeaderMenuProps) =>
-  <Container>
-    <Menu size="large" pointing secondary inverted={inverted}>
+  <Container style={{ marginTop: "40px", marginLeft: "0px", marginRight: "0px"}}>
+    <Menu size="massive" secondary inverted>
       <Menu.Item as="a" className="mobile only" icon="sidebar" onClick={() => dispatch(toggleSidebar())} />
-      <Menu.Item className="mobile hidden"><Icon name="spy" size="big" /></Menu.Item>
+      <Menu.Menu position='right'>
       {items.map((item) => {
         const active = (item.exact) ? pathname === item.path : pathname.startsWith(item.path);
         return <Menu.Item
@@ -26,6 +26,7 @@ export const HeaderMenu = ({ items, pathname, Link, inverted, dispatch }: Header
           active={active}
         />;
       })}
+      </Menu.Menu>
     </Menu>
   </Container>;
 

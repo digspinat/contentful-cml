@@ -28,13 +28,15 @@ export default class DefaultLayout extends React.PureComponent<DefaultLayoutProp
     return (
       <Sidebar.Pushable as={Segment}>
         <SidebarMenu Link={Link} pathname={pathname} items={menuItems} visible={false} />
-        <Sidebar.Pusher style={{ minHeight: "100vh" }}>
+        <Sidebar.Pusher style={{ minHeight: "100vh", backgroundColor: "#7a8690" }}>
           {/* Header */}
-          {isHome ? null : null}
+          <HeaderMenu Link={Link} pathname={pathname} items={menuItems} />
 
           {/* Render children pages */}
-          <div style={{ paddingBottom: 160 }}>
-            {this.props.children()}
+          <div style={{backgroundColor: "#7a8690"}}>
+            <div style={{ paddingBottom: 160, backgroundColor: "white", maxWidth: "1127px", margin: "0 auto" }}>
+              {this.props.children()}
+            </div>
           </div>
           <Segment inverted style={{ position: "absolute", bottom: 0, width: "100%", marginTop: "10px" }}>
             <Container>

@@ -25,11 +25,10 @@ export default ({ data }) => {
   /*console.log(Category);*/
   const allcategory = data.allcategory.group;
   return (
-    <div className="ui container">
-      <Container>
-        <Segment vertical>
+    <div className="ui container" style={{ marginLeft: "0", marginRight: "0" }}>
+      <Container style={{ marginLeft: "0", marginRight: "0" }}>
+        <Segment vertical style={{ backgroundColor: "#e1e9ee" }}>
           <Menu size="large" secondary>
-            <Menu.Item as={Link} name="Home" to='/'  />
             {allcategory.map(( category, index ) =>
               <div key={index}>
                 <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
@@ -37,35 +36,37 @@ export default ({ data }) => {
             )}
           </Menu>
         </Segment>
-        <Segment vertical>
-          <Grid columns={2}>
-            <Grid.Row>
-              <Grid.Column mobile={16} tablet={8} computer={12}>
-                <Header as="h2">
-                  <Icon name="info circle" />
-                  <Header.Content>
-                    {data.category.make}
-                  </Header.Content>
-                </Header>
-              </Grid.Column>
-              <Grid.Column mobile={16} tablet={8} computer={4}>
+        <div style={{ padding: "20px", minHeight: "50vh" }}>
+          <Segment vertical>
+            <Grid columns={2}>
+              <Grid.Row>
+                <Grid.Column mobile={16} tablet={8} computer={12}>
+                  <Header as="h2">
+                    <Icon name="info circle" />
+                    <Header.Content>
+                      {data.category.make}
+                    </Header.Content>
+                  </Header>
+                </Grid.Column>
+                <Grid.Column mobile={16} tablet={8} computer={4}>
 
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Segment>
-        <Segment vertical>
-          <Grid>
-            {Category.map(({ node }) =>
-              <Grid.Column key={node.manualUrl} mobile={16} tablet={8} computer={5}>
-                <Link to={`manual/` + node.manualUrl} >
-                  <Image src={node.manualImgixUrlCategory} width="310px" height="401px" />
-                  <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
-                </Link>
-              </Grid.Column>
-            )}
-          </Grid>
-        </Segment>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          <Segment vertical>
+            <Grid>
+              {Category.map(({ node }) =>
+                <Grid.Column key={node.manualUrl} mobile={16} tablet={8} computer={5}>
+                  <Link to={`manual/` + node.manualUrl} >
+                    <Image src={node.manualImgixUrlCategory} width="310px" height="401px" />
+                    <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
+                  </Link>
+                </Grid.Column>
+              )}
+            </Grid>
+          </Segment>
+        </div>
       </Container>
     </div>
     );

@@ -24,11 +24,10 @@ export default (props: IndexPageProps, data) => {
   const post = props.data.manual.edges;
   const category = props.data.category.group;
   return (
-    <div className="ui container">
-      <Container>
-        <Segment vertical >
+    <div className="ui container" style={{ marginLeft: "0", marginRight: "0" }}>
+      <Container style={{ marginLeft: "0", marginRight: "0" }}>
+        <Segment vertical style={{ backgroundColor: "#e1e9ee" }}>
           <Menu size="large" secondary>
-            <Menu.Item as={Link} name="Home" to='/'  />
             {category.map(( category, index ) =>
               <div key={index}>
                 <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
@@ -36,28 +35,30 @@ export default (props: IndexPageProps, data) => {
             )}
           </Menu>
         </Segment>
-        <Segment vertical>
-          <Header as="h2">
-            <Icon name="info circle" />
-            <Header.Content>
-              Manual
-            </Header.Content>
-          </Header>
-        </Segment>
-        <Segment vertical>
-        <div>
-          <Grid>
-          {post.map(({ node }) =>
-            <Grid.Column key={node.manualSku} mobile={16} tablet={8} computer={5}>
-              <Link to={`manual/` + node.manualUrl} >
-                <Image src={node.manualImgixUrlProduct} width="310px" height="401px" />
-                <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
-              </Link>
-            </Grid.Column>
-          )}
-          </Grid>
+        <div style={{ padding: "20px",minHeight: "50vh" }}>
+          <Segment vertical>
+            <Header as="h2">
+              <Icon name="info circle" />
+              <Header.Content>
+                Manual
+              </Header.Content>
+            </Header>
+          </Segment>
+          <Segment vertical>
+          <div>
+            <Grid>
+            {post.map(({ node }) =>
+              <Grid.Column key={node.manualUrl} mobile={16} tablet={8} computer={5}>
+                <Link to={`manual/` + node.manualUrl} >
+                  <Image src={node.manualImgixUrlProduct} width="310px" height="401px" />
+                  <Header as="h3" icon textAlign="center">{node.manualTitle}</Header>
+                </Link>
+              </Grid.Column>
+            )}
+            </Grid>
+          </div>
+          </Segment>
         </div>
-        </Segment>
       </Container>
     </div>
   );

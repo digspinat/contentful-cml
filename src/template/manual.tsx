@@ -51,11 +51,10 @@ class ManualCompo extends React.Component {
         },
     ];
     return (
-      <div className="ui container">
-        <Container>
-          <Segment vertical>
+      <div className="ui container" style={{ marginLeft: "0", marginRight: "0" }}>
+        <Container style={{ marginLeft: "0", marginRight: "0" }}>
+          <Segment vertical style={{ backgroundColor: "#e1e9ee" }}>
             <Menu size="large" secondary>
-              <Menu.Item as={Link} name="Home" to='/'  />
               {allcategory.map(( category, index ) =>
                 <div key={index}>
                   <Menu.Item as={Link} name={category.fieldValue} to={category.fieldValue}  />
@@ -63,6 +62,7 @@ class ManualCompo extends React.Component {
               )}
             </Menu>
           </Segment>
+          <div style={{ padding: "20px", minHeight: "50vh"}}>
           <Segment vertical>
             <Header as="h2">
               <Icon name="info circle" />
@@ -192,6 +192,7 @@ class ManualCompo extends React.Component {
               &nbsp;
             </button>
             </Segment>
+            </div>
         </Container>
       </div>
     );

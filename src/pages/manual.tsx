@@ -8,7 +8,7 @@ export default ({ data }) => {
   return (
     <div className="ui container">
       <Container>
-        <Segment vertical>
+        <Segment vertical style={{ backgroundColor: "#e1e9ee" }}>
           <Menu size="large" secondary>
             {category.map(( category, index ) =>
               <div key={index}>
